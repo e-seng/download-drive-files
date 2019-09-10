@@ -86,7 +86,7 @@ def download_drive_files(file_id, filepath, small_file=False):
             The Google Drive ID that is created when the file is made public
         filepath : string
             The path to where the file is going to be saved at including the
-            file name
+            file name and extention
         small_file : boolean
             Set this to True if the file is expected to be under 4KB in size
     """
