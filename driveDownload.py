@@ -78,7 +78,7 @@ def download_large_files(dl_link, filepath):
 
 
 def download_drive_files(file_id, filepath, small_file=False):
-    """Downloads a publically shared file from Google Drive.
+    """Downloads a publicly shared file from Google Drive.
 
     Parameters
     ----------
@@ -86,7 +86,7 @@ def download_drive_files(file_id, filepath, small_file=False):
             The Google Drive ID that is created when the file is made public
         filepath : string
             The path to where the file is going to be saved at including the
-            file name and extention
+            file name and extension
         small_file : boolean
             Set this to True if the file is expected to be under 4KB in size
     """
