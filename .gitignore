@@ -4,3 +4,5 @@
 out\.txt
 
 test\.txt
+
+__pycache__/
