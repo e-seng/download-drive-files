@@ -11,8 +11,7 @@ from driveDownload import download_drive_files
 If you are using a live Python interpreter and use the built-in "help" function,
 you'll see:
 ```python3
-Help on function download_drive_files in module driveDownload:
-
+"""
 download_drive_files(file_id, filepath, small_file=False)
     Downloads a publically shared file from Google Drive.
     
@@ -25,6 +24,7 @@ download_drive_files(file_id, filepath, small_file=False)
             file name and extension
         small_file : boolean
             Set this to True if the file is expected to be under 4KB in size
+"""
 ```
 For this program to work, you will need to input the file key that Google
 creates to the file that you want to try to download.
