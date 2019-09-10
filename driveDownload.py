@@ -6,7 +6,7 @@ import os
 
 def create_download_link(file_id):
     """Creates the download link for a public file located on Google Drive
-    Takes a given id key and places it into the appropreate link
+    Takes a given id key and places it into the appropriate link
     
     Download: https://drive.google.com/uc?id=(KEY)&export=download
 
