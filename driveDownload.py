@@ -43,7 +43,17 @@ def download_large_files(dl_link, filepath):
 
 def download_drive_files(file_id, filepath, small_file=False):
     """Downloads a publicly shared file from Google Drive.
+    Attempts to download a file shared with the current file id, which is found
+    with https://drive.google.com/file/d/{file_id}/view
+
+    If the file is less than 100MB, the small_file option should be set to true,
+    otherwise it may take longer to mass download files. 
     
+    Because Google has set a structure that states that if they can not scan the
+    file for viruses, it links to a new warning webpage stating so. Therefore, 
+    another function which reads the website's cookies and sets the newer
+    download link is called.
+
     Parameters
     ----------
         file_id : string
