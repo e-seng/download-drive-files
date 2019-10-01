@@ -4,42 +4,6 @@ import requests
 import os
 
 
-def create_download_link(file_id):
-    """Creates the download link for a public file located on Google Drive
-    Takes a given id key and places it into the appropriate link
-    
-    Download: https://drive.google.com/uc?id=(KEY)&export=download
-
-    Parameters
-    ----------
-        file_id : string
-            A Google Drive id to a public file, found within the share link
-
-    Returns a string, which is the download link
-    """
-    # Add key to the download link and tell the server to download the file
-    dl_link = "https://drive.google.com/uc?id={}&export=download".format(file_id)
-
-    return dl_link
-
-
-def download_small_files(dl_link, filepath):
-    """Downloads a public Google Drive file if the file is under 100MB
-
-    Parameters
-    ----------
-        dl_link : string
-            The full download link of the requested file
-        filepath : string
-            Path to download to, include name and extension
-    """
-    resp = requests.get(dl_link)
-    with open(filepath, "wb") as file: file.write(resp.content)
-    resp.close()
-
-    return 0
-
-
 def download_large_files(dl_link, filepath):
     """Downloads a public Google Drive file if the file exceeds 100MB, since 
     Google is unable to scan these types of files for any viruses.
@@ -79,7 +43,7 @@ def download_large_files(dl_link, filepath):
 
 def download_drive_files(file_id, filepath, small_file=False):
     """Downloads a publicly shared file from Google Drive.
-
+    
     Parameters
     ----------
         file_id : string
@@ -90,9 +54,11 @@ def download_drive_files(file_id, filepath, small_file=False):
         small_file : boolean
             Set this to True if the file is expected to be under 4KB in size
     """
-    link = create_download_link(file_id)
+    link = "https://drive.google.com/uc?id={}&export=download".format(file_id)
 
-    download_small_files(link, filepath)
+    resp = requests.get(dl_link)
+    with open(filepath, "wb") as file: file.write(resp.content)
+    resp.close()
 
     # If a file is less than 4KB and is suppose to be a large file, then it has
     # likely failed downloading
