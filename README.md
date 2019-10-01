@@ -47,7 +47,7 @@ This key should be used in place of the "file_id" parameter
 ## Limitations
 Unfortunately, this script is unable to download or copy text from a Google Docs
 file, which includes any Google Docs, Google Sheets, Google Slides or any file
-which utilize Google's online editor.
+which utilizes Google's online editor.
 
 This function can be used for downloading any other files apart from the ones
 listed above.
