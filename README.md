@@ -1,4 +1,3 @@
-
 # Download Public Google Drive Files
 Automate Google Drive downloads for any files that are publicly shared.
 
@@ -10,9 +9,8 @@ from driveDownload import download_drive_files
 
 If you are using a live Python interpreter and use the built-in "help" function,
 you'll see:
-```python3
-"""
-download_drive_files(file_id, filepath, small_file=False)
+```
+download_drive_files(file_id, filepath, large_file=True)
     Downloads a publically shared file from Google Drive.
     
     Parameters
@@ -22,9 +20,8 @@ download_drive_files(file_id, filepath, small_file=False)
         filepath : string
             The path to where the file is going to be saved at including the
             file name and extension
-        small_file : boolean
-            Set this to True if the file is expected to be under 4KB in size
-"""
+        large_file : boolean
+            Set this to False if the file is expected to be under 4KB in size
 ```
 For this program to work, you will need to input the file key that Google
 creates to the file that you want to try to download.
