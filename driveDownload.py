@@ -28,9 +28,13 @@ def download_large_files(dl_link, filepath):
     cookie_dict = session.cookies.get_dict()
 
     for key, value in cookie_dict.items():
-        if "download" in key: confirm_key = value
+        if "download" not in key: continue
+        confirm_key = value
 
-    final_link = temp_link.format(file_id, confirm_key)
+    try:
+        final_link = temp_link.format(file_id, confirm_key)
+    except UnboundLocalError:
+        raise RuntimeError("No download cookie found! Is this a small file?")
 
     # Download the file and write it to the filepath
     resp = session.get(final_link)
@@ -48,7 +52,7 @@ def download_drive_files(file_id, filepath, small_file=False):
 
     If the file is less than 100MB, the small_file option should be set to true,
     otherwise it may take longer to mass download files. 
-    
+
     Because Google has set a structure that states that if they can not scan the
     file for viruses, it links to a new warning webpage stating so. Therefore, 
     another function which reads the website's cookies and sets the newer
@@ -66,13 +70,13 @@ def download_drive_files(file_id, filepath, small_file=False):
     """
     link = "https://drive.google.com/uc?id={}&export=download".format(file_id)
 
-    resp = requests.get(dl_link)
+    resp = requests.get(link)
     with open(filepath, "wb") as file: file.write(resp.content)
     resp.close()
 
     # If a file is less than 4KB and is suppose to be a large file, then it has
     # likely failed downloading
-    if not small_file and os.path.getsize(filepath) <= 4000:
+    if small_file and os.path.getsize(filepath) <= 4000:
         download_large_files(link, filepath)
 
     return 0
@@ -82,7 +86,7 @@ def main():
     file_id = "1Tp4J7SqokrmAy--iddot4DuVt7WURsXY"
     filepath = "./out.txt"
 
-    download_drive_files(file_id, filepath)
+    download_drive_files(file_id, filepath, small_file=True)
 
     return 0
 
